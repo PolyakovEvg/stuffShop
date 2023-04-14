@@ -56,7 +56,7 @@
   margin-top: auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .prices {
@@ -78,6 +78,7 @@
   line-height: 16px;
   text-decoration-line: line-through;
   color: var(--dark-sea);
+  margin-left: 10px;
 }
 
 .purchases {

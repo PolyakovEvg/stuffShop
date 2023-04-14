@@ -1,9 +1,9 @@
 import React from "react";
 import classes from "../../styles/Header.module.css";
 import { Link } from "react-router-dom";
-import LOGOIMG from "../../images/logo.svg";
+import { LOGOIMG } from "../../utils";
+import { SPRITE } from "../../utils";
 import AVATAR from "../../images/avatar.jpg";
-import SPRITE from "../../images/sprite.svg";
 
 const Header = () => {
   return (

@@ -53,6 +53,7 @@
   font-size: 20px;
   line-height: 24px;
   margin: 10px 0 20px 0;
+  color: var(--violet)
 }
 
 .color,
@@ -96,7 +97,7 @@
 
 .description {
   font-weight: 400;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 15px;
   color: var(--grey);
 }
@@ -120,7 +121,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: 15px;
   line-height: 12px;
   color: var(--dark-sea);
   margin-top: auto;
