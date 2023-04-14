@@ -6,10 +6,10 @@ const Product = ({ title, images, price, description, id }) => {
   const [currentImage, setCurrentImage] = useState();
   const [currentSize, setCurrentSize] = useState();
 
-  useEffect(()=>{
-    if(!images) return;
-    setCurrentImage(images[0])
-  },[])
+  useEffect(() => {
+    if (!images) return;
+    setCurrentImage(images[0]);
+  }, []);
 
   return (
     <section className={classes.product}>
@@ -24,7 +24,8 @@ const Product = ({ title, images, price, description, id }) => {
               key={i}
               className={classes.image}
               style={{ backgroundImage: `url(${image})` }}
-              onClick={(e) => { setCurrentImage(image)
+              onClick={(e) => {
+                setCurrentImage(image);
               }}
             ></div>
           ))}
@@ -40,9 +41,10 @@ const Product = ({ title, images, price, description, id }) => {
           <span>Sizes:</span>
           {SIZES.map((size) => (
             <div
-              onClick={() =>  setCurrentSize(size)
-              }
-              className={`${classes.size} ${currentSize === size ? classes.active : null}`}
+              onClick={() => setCurrentSize(size)}
+              className={`${classes.size} ${
+                currentSize === size ? classes.active : null
+              }`}
               key={size}
             >
               {size}
@@ -52,7 +54,9 @@ const Product = ({ title, images, price, description, id }) => {
         </div>
         <p className={classes.description}>{description}</p>
         <div className={classes.actions}>
-          <button className={classes.add} disabled={!currentSize}>Add to card</button>
+          <button className={classes.add} disabled={!currentSize}>
+            Add to card
+          </button>
           <button className={classes.favourite}>Add to favourites</button>
         </div>
 
