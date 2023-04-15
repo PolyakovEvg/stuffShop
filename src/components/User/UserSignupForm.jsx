@@ -17,6 +17,12 @@ const UserSignupForm = () => {
     setValues({ ...values, [name]: value });
   };
 
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    const isEmpty = Object.values(values).every(val => val)
+    if(isEmpty) return
+  }
+
   return (
     <>
       <div className={classes.wrapper} onClick={(e)=> e.stopPropagation()}>
@@ -72,7 +78,7 @@ const UserSignupForm = () => {
             ></input>
           </div>
           <div className={classes.link}>I already have an account</div>
-          <button type="submit" className={classes.submit}>
+          <button type="submit" className={classes.submit} onClick={handleSubmit}>
             {" "}
             Create an account
           </button>
