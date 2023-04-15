@@ -16,35 +16,6 @@ export const getProducts = createAsyncThunk(
 );
 
 const productsSlice = createSlice({
-<<<<<<< HEAD
-  name: "products",
-  initialState: {
-    list: [],
-    filtered: [],
-  },
-  // related: [],
-  isLoading: false,
-  reducers: {
-    filrerByPrice: (state, { payload }) => {
-      state.filtered = state.list.filter(({ price }) => price < payload);
-    },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(getProducts.pending, (state, { payload }) => {
-      state.isLoading = true;
-      state.list = payload;
-    });
-    builder.addCase(getProducts.fulfilled, (state, { payload }) => {
-      state.list = payload;
-      state.isLoading = false;
-    });
-    builder.addCase(getProducts.rejected, (state, { payload }) => {
-      state.isLoading = false;
-      console.log("Ошибка ответа от API");
-    });
-  },
-});
-=======
     name: 'products',
     initialState: {
         list: [],
@@ -77,7 +48,6 @@ const productsSlice = createSlice({
         })
     }
 })
->>>>>>> user
 
 export const { filrerByPrice, getRelatedProducts } = productsSlice.actions;
 

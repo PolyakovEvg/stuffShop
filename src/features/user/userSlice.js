@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { API_URL } from "../../utils"
 import axios from "axios"
@@ -16,11 +15,6 @@ export const createUser = createAsyncThunk(
         }
     }
 )
-=======
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { API_URL } from "../../utils";
-import axios from "axios";
->>>>>>> main
 
 export const getuser = createAsyncThunk("user/getuser", async (_, thunkAPI) => {
   try {
@@ -33,32 +27,6 @@ export const getuser = createAsyncThunk("user/getuser", async (_, thunkAPI) => {
 });
 
 const userSlice = createSlice({
-<<<<<<< HEAD
-  name: "user",
-  initialState: {
-    currentUser: [],
-    cart: [],
-    // filtered: [],
-  },
-  // related: [],
-  isLoading: false,
-  reducers: {},
-  extraReducers: (builder) => {
-    // builder.addCase(getuser.pending, (state, {payload}) =>{
-    //     state.isLoading = true
-    //     state.list = payload
-    // })
-    // builder.addCase(getuser.fulfilled, (state, {payload}) =>{
-    //     state.list = payload
-    //     state.isLoading = false
-    // })
-    // builder.addCase(getuser.rejected, (state, {payload}) =>{
-    //     state.isLoading = false
-    //     console.log('Ошибка ответа от API')
-    // })
-  },
-});
-=======
     name: 'user',
     initialState: {
         currentUser: null,
@@ -110,7 +78,6 @@ const userSlice = createSlice({
         // })
     }
 })
->>>>>>> user
 
 export const { addItemToCart, addItemToFavourites, toggleForm } = userSlice.actions;
 
