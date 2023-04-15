@@ -21,13 +21,22 @@ const userSlice = createSlice({
     name: 'user',
     initialState: {
         currentUser: [],
-        cart: []
-        // filtered: [],
+        cart: [],
+        isLoading: false,
     },
-    // related: [],
-    isLoading: false,
     reducers: {
-      
+      addItemToCart: (state, { payload }) => {
+        let newCart = [...state.cart]
+        const foundItem = state.cart.find(({id}) => id === payload.id)
+        if(foundItem){
+            newCart = newCart.map((item) =>{
+                return item.id === payload.id ? {...item, quantity: payload.quantity || item.quantity +1 } : item
+            })
+        }else{
+            newCart.push({...payload, quantity: 1})
+        }
+        state.cart = newCart
+      }
     },
     extraReducers: (builder) => {
         // builder.addCase(getuser.pending, (state, {payload}) =>{
@@ -45,6 +54,6 @@ const userSlice = createSlice({
     }
 })
 
-// export const { filrerByPrice } = userSlice.actions;
+export const { addItemToCart } = userSlice.actions;
 
 export default userSlice.reducer;

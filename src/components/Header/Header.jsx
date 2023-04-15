@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import { LOGOIMG } from "../../utils";
 import { SPRITE } from "../../utils";
 import AVATAR from "../../images/avatar.jpg";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const {cart} = useSelector(({user})=> user)
+
   return (
     <div className={classes.header}>
       <div className={classes.logo}>
