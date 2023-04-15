@@ -4,10 +4,19 @@ import { Link } from "react-router-dom";
 import { LOGOIMG } from "../../utils";
 import { SPRITE } from "../../utils";
 import AVATAR from "../../images/avatar.jpg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleForm } from "../../features/user/userSlice";
 
 const Header = () => {
-  const {cart} = useSelector(({user})=> user)
+  const {cart, favourites} = useSelector(({user})=> user)
+  const getCount = (arr) => arr.reduce((sum, item)=> sum + item.quantity, 0)
+  const { currentUser } = useSelector(({user}) => user)
+  console.log(currentUser)
+  const dispatch = useDispatch()
+
+  const handleClick =()=>{
+    if(!currentUser) dispatch(toggleForm(true))
+  }
 
   return (
     <div className={classes.header}>
@@ -18,7 +27,7 @@ const Header = () => {
       </div>
 
       <div className={classes.info}>
-        <div className={classes.user}>
+        <div className={classes.user} onClick={handleClick}>
           <div
             className={classes.avatar}
             style={{ backgroundImage: `url(${AVATAR})` }}
@@ -44,12 +53,13 @@ const Header = () => {
             <svg className={classes["icon-fav"]}>
               <use xlinkHref={`${SPRITE}#heart`} />
             </svg>
+            <span className={classes.count}></span>
           </Link>
           <Link to="/" className={classes.cart}>
             <svg className={classes["icon-fav"]}>
               <use xlinkHref={`${SPRITE}#bag`} />
             </svg>
-            <span className={classes.count}>2</span>
+            <span className={classes.count}>{ getCount(cart) }</span>
           </Link>
         </div>
       </div>

@@ -2,11 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { API_URL } from "../../utils"
 import axios from "axios"
 
-export const getuser = createAsyncThunk(
-    'user/getuser',
-    async (_, thunkAPI) => {
+export const createUser = createAsyncThunk(
+    'user/createUser',
+    async (payload, thunkAPI) => {
         try{
-            const responce = await axios.get(`${API_URL}/user`)
+            const responce = await axios.post(`${API_URL}/users`, payload)
             return responce.data
 
         }catch(e){
@@ -20,9 +20,12 @@ export const getuser = createAsyncThunk(
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        currentUser: [],
+        currentUser: null,
         cart: [],
+        favourites: [],
         isLoading: false,
+        formType: 'signup',
+        showForm: false,
     },
     reducers: {
       addItemToCart: (state, { payload }) => {
@@ -36,17 +39,30 @@ const userSlice = createSlice({
             newCart.push({...payload, quantity: 1})
         }
         state.cart = newCart
+      },
+      toggleForm: (state, {payload}) =>{
+        state.showForm = payload
       }
+    //   addItemToFavourites: (state, { payload }) => {
+    //     let newFavourites = [...state.favourites]
+    //     if(newFavourites.length){
+    //         newFavourites.map((item)=>{
+    //             item.id === payload.id ?  console.log('id одинаковые') : newFavourites.push(payload)
+    //         })
+    //     }else{
+    //         newFavourites.push(payload)
+    //     }
+    //     console.log(newFavourites)
+    //   }
     },
     extraReducers: (builder) => {
         // builder.addCase(getuser.pending, (state, {payload}) =>{
         //     state.isLoading = true
         //     state.list = payload
         // })
-        // builder.addCase(getuser.fulfilled, (state, {payload}) =>{
-        //     state.list = payload
-        //     state.isLoading = false
-        // })
+        builder.addCase(createUser.fulfilled, (state, {payload}) =>{
+            state.currentUser = payload
+        })
         // builder.addCase(getuser.rejected, (state, {payload}) =>{
         //     state.isLoading = false
         //     console.log('Ошибка ответа от API')
@@ -54,6 +70,6 @@ const userSlice = createSlice({
     }
 })
 
-export const { addItemToCart } = userSlice.actions;
+export const { addItemToCart, addItemToFavourites, toggleForm } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -11,7 +11,7 @@ const SingleProduct = () => {
     const { data, isLoading, isFetching, isSuccess } = useGetProductQuery({id})
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {related} = useSelector(( {products}) => products)
+    const {list, related} = useSelector(( {products}) => products)
     
     useEffect(()=>{
       if(!isFetching && !isLoading && !isSuccess){
@@ -20,10 +20,10 @@ const SingleProduct = () => {
     }, [isFetching, isLoading, isSuccess])
     
     useEffect(()=>{
-      if(data){
+      if(!data || !list ) return
         dispatch(getRelatedProducts(data.category.id))
-      }
-    },[dispatch, data])
+      
+    },[dispatch, data, list])
 
   return (
     <>

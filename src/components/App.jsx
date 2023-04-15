@@ -7,6 +7,7 @@ import styles from "../styles/index.css";
 import { useDispatch } from "react-redux";
 import { getCategories } from '../features/categories/categoriesSlice'
 import { getProducts } from "../features/products/productsSlice";
+import UserForm from "./User/UserForm";
 
 
 
@@ -22,6 +23,7 @@ const App = () => {
   return (
     <div className="app">
       <Header />
+      <UserForm/>
       <div className="container">
         <Sidebar />
         <AppRouter />

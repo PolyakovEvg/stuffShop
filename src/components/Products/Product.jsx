@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import classes from "../../styles/Product.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addItemToCart } from "../../features/user/userSlice";
+import { addItemToCart, addItemToFavourites } from "../../features/user/userSlice";
 const SIZES = [4, 4.5, 5];
 
 const Product = (item) => {
@@ -66,7 +66,7 @@ const Product = (item) => {
           <button className={classes.add} disabled={!currentSize} onClick={() => addToCart()}>
             Add to card
           </button>
-          <button className={classes.favourite} >
+          <button className={classes.favourite}>
             Add to favourites
           </button>
         </div>

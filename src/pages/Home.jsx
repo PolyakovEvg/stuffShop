@@ -17,7 +17,6 @@ const Home = () => {
     return
   },[dispatch, list])
 
-  console.log(list)
   return (
     <>
       <Poster />
