@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classes from "../../styles/Header.module.css";
 import { Link } from "react-router-dom";
 import { LOGOIMG } from "../../utils";
@@ -11,8 +11,13 @@ const Header = () => {
   const {cart, favourites} = useSelector(({user})=> user)
   const getCount = (arr) => arr.reduce((sum, item)=> sum + item.quantity, 0)
   const { currentUser } = useSelector(({user}) => user)
-  console.log(currentUser)
   const dispatch = useDispatch()
+  
+  const [values, setValues] = useState({name: 'Guest', avatar: AVATAR})
+  useEffect(()=>{
+    if(!currentUser) return
+    setValues(currentUser)
+  },[currentUser])
 
   const handleClick =()=>{
     if(!currentUser) dispatch(toggleForm(true))
@@ -30,9 +35,9 @@ const Header = () => {
         <div className={classes.user} onClick={handleClick}>
           <div
             className={classes.avatar}
-            style={{ backgroundImage: `url(${AVATAR})` }}
+            style={{ backgroundImage: `url(${values.avatar})` }}
           />
-          <div className={classes.username}> Dear guest</div>
+          <div className={classes.username}> {values.name}</div>
         </div>
 
         <form className={classes.form__search}>

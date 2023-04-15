@@ -1,27 +1,24 @@
 import React, { useState } from "react";
 import classes from "../../styles/User.module.css";
 import { SPRITE } from "../../utils";
-import { createUser  } from "../../features/user/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, toggleForm, toggleFormType } from "../../features/user/userSlice";
 
-const UserSignupForm = ({closeForm, toggleCurrentFormType }) => {
+const UserLoginForm = ({closeForm, toggleCurrentFormType}) => {
   const dispatch = useDispatch()
   const [values, setValues] = useState({
-    name: "",
-    email: "",
+    email:  "",
     password: "",
-    avatar: "",
   });
 
   const [emptyInputs, setEmptyInputs] = useState({
-    name: false,
     email: false,
     password: false,
-    avatar: false,
   });
 
   const handleChange = ({ target: { value, name } }) => {
     setValues({ ...values, [name]: value });
+
   };
 
   const handleSubmit = (e) =>{
@@ -33,9 +30,10 @@ const UserSignupForm = ({closeForm, toggleCurrentFormType }) => {
       }, {});
       setEmptyInputs(newErrors);
     } else {
-      dispatch(createUser(values))
+      dispatch(loginUser(values))
       closeForm()
     }
+    console.log(emptyInputs)
   }
   return (
     <>
@@ -45,19 +43,8 @@ const UserSignupForm = ({closeForm, toggleCurrentFormType }) => {
             <use xlinkHref={`${SPRITE}#close`} />
           </svg>
         </div>
-        <div className={classes.title}>Sign up</div>
+        <div className={classes.title}>Login</div>
         <form className={classes.form}>
-        <div className={`${classes.group} ${emptyInputs.name ? classes.error : ""}`}>
-            <input
-              type="name"
-              name="name"
-              placeholder="Your name"
-              autoComplete="off"
-              onChange={handleChange}
-              required
-              value={values.name}
-            ></input>
-          </div>
           <div className={`${classes.group} ${emptyInputs.email ? classes.error : ""}`}>
             <input
               type="email"
@@ -80,21 +67,9 @@ const UserSignupForm = ({closeForm, toggleCurrentFormType }) => {
               value={values.password}
             ></input>
           </div>
-          <div className={`${classes.group} ${emptyInputs.avatar ? classes.error : ""}`}>
-            <input
-              type="avatar"
-              name="avatar"
-              placeholder="Your avatar"
-              autoComplete="off"
-              onChange={handleChange}
-              required
-              value={values.avatar}
-            ></input>
-          </div>
-          <div className={classes.link} onClick={() => toggleCurrentFormType('login')}>I already have an account</div>
+          <div className={classes.link} onClick={() => toggleCurrentFormType('signup')}>Create an account</div>
           <button type="submit" className={classes.submit} onClick={handleSubmit}>
-            {" "}
-            Create an account
+            Login
           </button>
         </form>
       </div>
@@ -102,4 +77,4 @@ const UserSignupForm = ({closeForm, toggleCurrentFormType }) => {
   );
 };
 
-export default UserSignupForm;
+export default UserLoginForm;

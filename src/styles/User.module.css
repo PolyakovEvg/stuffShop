@@ -13,7 +13,7 @@
   top: 0;
   right: 0;
   background: var(--dark);
-  width: 320px;
+  width: 480px;
   height: 100vh;
   z-index: 99;
   padding: 24px;
@@ -42,6 +42,11 @@
   border-radius: 8px;
   color: var(--light);
   padding: 12px 24px;
+}
+
+.error{
+  border-radius: 8px;
+  border: 2px solid red;
 }
 
 .submit {
