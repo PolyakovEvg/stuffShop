@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import classes from "../../styles/User.module.css";
 import { SPRITE } from "../../utils";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, toggleForm, toggleFormType } from "../../features/user/userSlice";
+import {
+  loginUser,
+  toggleForm,
+  toggleFormType,
+} from "../../features/user/userSlice";
+import MyInput from "../../UI/MyInput";
 
-const UserLoginForm = ({closeForm, toggleCurrentFormType}) => {
-  const dispatch = useDispatch()
+const UserLoginForm = ({ closeForm, toggleCurrentFormType }) => {
+  const dispatch = useDispatch();
   const [values, setValues] = useState({
-    email:  "",
+    email: "",
     password: "",
   });
 
@@ -18,10 +23,9 @@ const UserLoginForm = ({closeForm, toggleCurrentFormType}) => {
 
   const handleChange = ({ target: { value, name } }) => {
     setValues({ ...values, [name]: value });
-
   };
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     const emptyFields = Object.entries(values).filter(([key, value]) => !value);
     if (emptyFields.length) {
@@ -30,14 +34,14 @@ const UserLoginForm = ({closeForm, toggleCurrentFormType}) => {
       }, {});
       setEmptyInputs(newErrors);
     } else {
-      dispatch(loginUser(values))
-      closeForm()
+      dispatch(loginUser(values));
+      closeForm();
     }
-    console.log(emptyInputs)
-  }
+    console.log(emptyInputs);
+  };
   return (
     <>
-      <div className={classes.wrapper} onClick={(e)=> e.stopPropagation()}>
+      <div className={classes.wrapper} onClick={(e) => e.stopPropagation()}>
         <div className={classes.close} onClick={() => closeForm}>
           <svg className={classes.icon}>
             <use xlinkHref={`${SPRITE}#close`} />
@@ -45,30 +49,29 @@ const UserLoginForm = ({closeForm, toggleCurrentFormType}) => {
         </div>
         <div className={classes.title}>Login</div>
         <form className={classes.form}>
-          <div className={`${classes.group} ${emptyInputs.email ? classes.error : ""}`}>
-            <input
-              type="email"
-              name="email"
-              placeholder="Your email"
-              autoComplete="off"
-              onChange={handleChange}
-              required
-              value={values.email}
-            ></input>
+          <MyInput
+            isEmpty={emptyInputs.email}
+            value={values.email}
+            handleChange={handleChange}
+            type="email"
+          ></MyInput>
+          <MyInput
+            isEmpty={emptyInputs.password}
+            value={values.password}
+            handleChange={handleChange}
+            type="password"
+          ></MyInput>
+          <div
+            className={classes.link}
+            onClick={() => toggleCurrentFormType("signup")}
+          >
+            Create an account
           </div>
-          <div className={`${classes.group} ${emptyInputs.password ? classes.error : ""}`}>
-            <input
-              type="password"
-              name="password"
-              placeholder="Your password"
-              autoComplete="off"
-              onChange={handleChange}
-              required
-              value={values.password}
-            ></input>
-          </div>
-          <div className={classes.link} onClick={() => toggleCurrentFormType('signup')}>Create an account</div>
-          <button type="submit" className={classes.submit} onClick={handleSubmit}>
+          <button
+            type="submit"
+            className={classes.submit}
+            onClick={handleSubmit}
+          >
             Login
           </button>
         </form>

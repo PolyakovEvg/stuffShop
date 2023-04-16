@@ -6,6 +6,7 @@ import { SPRITE } from "../../utils";
 import AVATAR from "../../images/avatar.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleForm } from "../../features/user/userSlice";
+import { useGetProductsQuery } from "../../features/api/apiSlice";
 
 const Header = () => {
   const {cart, favourites} = useSelector(({user})=> user)
@@ -23,8 +24,12 @@ const Header = () => {
     if(!currentUser) dispatch(toggleForm(true))
   }
 
+  const [searchValue, setSearchValue] = useState('')
+  const { data, isLoading } = useGetProductsQuery({title: searchValue})
+  console.log( data )
+
   return (
-    <div className={classes.header}>
+    <>    <div className={classes.header}>
       <div className={classes.logo}>
         <Link to="/">
           <img src={LOGOIMG} alt="Stuff"></img>
@@ -48,9 +53,24 @@ const Header = () => {
             placeholder="Search ..."
             className={classes.input}
             autoComplete="off"
-            onChange={(e) => console.log(e.target.value)}
+            value={searchValue}
+            onChange={({target}) => setSearchValue(target.value) }
           />
           <div className="box"></div>
+
+          {searchValue && <div className={classes.box}>
+          { isLoading ? 'Loading' : !data.length ? 'No results' : 
+          (
+            data.map(({title, images, id}) => (
+              <Link className={classes.item} key={id} to={`products/${id}`} >
+              <div className={classes.image} style={{backgroundImage: `url(${images[0]}})`}}></div>
+              <div className={classes.title}>{title}</div>
+              </Link>
+
+            ))
+          )}
+          </div>}
+
         </form>
 
         <div className={classes.account}>
@@ -69,6 +89,8 @@ const Header = () => {
         </div>
       </div>
     </div>
+    </>
+
   );
 };
 
