@@ -12,5 +12,6 @@ export const buildUrl = (url, params) =>{
         const sign = !i ? '?' : '&'
         urlWithParams += `${sign}${key}=${value}`
     })
+
     return urlWithParams;
 }

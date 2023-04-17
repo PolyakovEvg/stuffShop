@@ -3,7 +3,7 @@ import classes from "../../styles/Products.module.css";
 import { Link } from "react-router-dom";
 
 const Products = ({ title, products = [], style = {}, amount }) => {
-  products = products.slice(0, 5);
+  products = products.slice(0, amount);
   return (
     <section className={classes.products}>
         {title && <h2>{title}</h2>}
