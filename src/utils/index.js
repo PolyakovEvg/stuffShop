@@ -1,5 +1,6 @@
 
 
+
 export const LOGOIMG = '/src/images/logo.svg'
 export const SPRITE = '/src/images/sprite.svg'
 
@@ -15,3 +16,6 @@ export const buildUrl = (url, params) =>{
 
     return urlWithParams;
 }
+
+
+export const sumBy = (array) => array.reduce((sum, item) => item + sum, 0)

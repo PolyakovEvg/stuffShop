@@ -58,9 +58,20 @@
   color: var(--grey);
 }
 
-.price {
+.prices {
   font-size: 14px;
   line-height: 18px;
+  color: var(--violet);
+  display: flex;
+}
+
+.oldPrice{
+  text-decoration: line-through;
+}
+.price{
+  color:var(--light);
+  font-size: 16px;
+  padding: 0 10px;
 }
 
 .quantity {
@@ -71,7 +82,7 @@
 .quantity span {
   width: 40px;
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 17px;
   color: var(--dark-sea);
 }
@@ -130,6 +141,7 @@
   font-size: 20px;
   line-height: 24px;
   color: var(--grey);
+  
 }
 
 .total span {

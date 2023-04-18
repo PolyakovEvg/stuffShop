@@ -36,6 +36,7 @@ const UserLoginForm = ({ closeForm, toggleCurrentFormType }) => {
       setEmptyInputs(newErrors);
     } else {
       dispatch(loginUser(values))
+      closeForm()
     }
     console.log(emptyInputs);
   };
