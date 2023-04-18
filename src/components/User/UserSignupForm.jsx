@@ -53,25 +53,29 @@ const UserSignupForm = ({ closeForm, toggleCurrentFormType }) => {
             isEmpty={emptyInputs.name}
             value={values.name}
             handleChange={handleChange}
-            type="name"
+            type="text"
+            name="name"
           />
           <MyInput
             isEmpty={emptyInputs.email}
             value={values.email}
             handleChange={handleChange}
             type="email"
+            name="email"
           />
           <MyInput
             isEmpty={emptyInputs.password}
             value={values.password}
             handleChange={handleChange}
             type="password"
+            name="password"
           />
           <MyInput
             isEmpty={emptyInputs.avatar}
             value={values.avatar}
             handleChange={handleChange}
             type="avatar"
+            name="avatar"
           />
           <div
             className={classes.link}

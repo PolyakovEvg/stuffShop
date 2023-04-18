@@ -25,6 +25,7 @@ const UserLoginForm = ({ closeForm, toggleCurrentFormType }) => {
     setValues({ ...values, [name]: value });
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const emptyFields = Object.entries(values).filter(([key, value]) => !value);
@@ -34,8 +35,7 @@ const UserLoginForm = ({ closeForm, toggleCurrentFormType }) => {
       }, {});
       setEmptyInputs(newErrors);
     } else {
-      dispatch(loginUser(values));
-      closeForm();
+      dispatch(loginUser(values))
     }
     console.log(emptyInputs);
   };
@@ -54,12 +54,14 @@ const UserLoginForm = ({ closeForm, toggleCurrentFormType }) => {
             value={values.email}
             handleChange={handleChange}
             type="email"
+            name="email"
           ></MyInput>
           <MyInput
             isEmpty={emptyInputs.password}
             value={values.password}
             handleChange={handleChange}
             type="password"
+            name="password"
           ></MyInput>
           <div
             className={classes.link}

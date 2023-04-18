@@ -3,6 +3,11 @@
   padding: 24px;
   flex-grow: 1;
 }
+.form__info{
+  color: var(--dark-sea);
+  display: flex;
+  align-items: center;
+}
 
 .filters {
   display: flex;
@@ -17,6 +22,7 @@
   padding: 12px 24px;
   width: max-content;
   display: flex;
+  flex-direction: column;
   align-items: center;
   min-width: 225px;
 }
@@ -37,6 +43,7 @@
   line-height: 16px;
   color: var(--dark-sea);
   text-align: right;
+  padding: 0 0 5px 0;
 }
 
 .more {

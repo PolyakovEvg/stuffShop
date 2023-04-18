@@ -90,7 +90,7 @@ const Header = () => {
               </svg>
               <span className={classes.count}></span>
             </Link>
-            <Link to="/" className={classes.cart}>
+            <Link to="/cart" className={classes.cart}>
               <svg className={classes["icon-fav"]}>
                 <use xlinkHref={`${SPRITE}#bag`} />
               </svg>

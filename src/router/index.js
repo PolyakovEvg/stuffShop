@@ -1,3 +1,4 @@
+import Cart from '../components/Cart/Cart'
 import SingleCategory from '../components/Categories/SingleCategory'
 import SingleProduct from '../components/Products/SingleProduct'
 import Profile from '../components/User/Profile'
@@ -9,5 +10,6 @@ export const router = [
     {path: '/categories/:id', component: SingleCategory},
     {path: '/products/:id', component: SingleProduct},
     {path: '/profile', component: Profile},
+    {path: '/cart', component: Cart}
 
 ] 
