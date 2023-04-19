@@ -83,17 +83,18 @@ const userSlice = createSlice({
     toggleFormType: (state, { payload }) => {
       state.formType = payload;
     },
-    //   addItemToFavourites: (state, { payload }) => {
-    //     let newFavourites = [...state.favourites]
-    //     if(newFavourites.length){
-    //         newFavourites.map((item)=>{
-    //             item.id === payload.id ?  console.log('id одинаковые') : newFavourites.push(payload)
-    //         })
-    //     }else{
-    //         newFavourites.push(payload)
-    //     }
-    //     console.log(newFavourites)
-    //   }
+      addItemToFavourites: (state, { payload }) => {
+        let newFavourites = [...state.favourites]
+        if(newFavourites.length){
+          !newFavourites.some(({id})=> id === payload.id) && newFavourites.push({...payload})
+        } else{
+          newFavourites.push({...payload})
+
+        }
+        console.log(payload.id)
+        console.log(newFavourites)
+        state.favourites = newFavourites
+      }
   },
   extraReducers: (builder) => {
     builder.addCase(createUser.fulfilled, addCurrentUser);

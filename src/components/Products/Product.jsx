@@ -14,6 +14,7 @@ const Product = (item) => {
 
   const dispatch = useDispatch();
   const addToCart = () => dispatch(addItemToCart(item));
+  const addToFavoutites = () => dispatch(addItemToFavourites(item))
 
   useEffect(() => {
     if (!images) return;
@@ -66,7 +67,7 @@ const Product = (item) => {
           <button className={classes.add} disabled={!currentSize} onClick={() => addToCart()}>
             Add to card
           </button>
-          <button className={classes.favourite}>
+          <button className={classes.favourite} onClick={() => addToFavoutites()}>
             Add to favourites
           </button>
         </div>

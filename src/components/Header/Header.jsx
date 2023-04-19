@@ -88,7 +88,7 @@ const Header = () => {
               <svg className={classes["icon-fav"]}>
                 <use xlinkHref={`${SPRITE}#heart`} />
               </svg>
-              <span className={classes.count}></span>
+              <span className={favourites.length ? classes.count : classes.hidden}>{favourites.length}</span>
             </Link>
             <Link to="/cart" className={classes.cart}>
               <svg className={classes["icon-fav"]}>
