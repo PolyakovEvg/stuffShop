@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classes from "../../styles/Header.module.css";
 import { Link } from "react-router-dom";
-import { LOGOIMG } from "../../utils";
+import { LOGOIMG, sumBy } from "../../utils";
 import { SPRITE } from "../../utils";
 import AVATAR from "../../images/avatar.jpg";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +10,7 @@ import { useGetProductsQuery } from "../../features/api/apiSlice";
 
 const Header = () => {
   const { cart, favourites } = useSelector(({ user }) => user);
-  const getCount = (arr) => arr.reduce((sum, item) => sum + item.quantity, 0);
+  
   const { currentUser } = useSelector(({ user }) => user);
   const dispatch = useDispatch();
 
@@ -94,7 +94,7 @@ const Header = () => {
               <svg className={classes["icon-fav"]}>
                 <use xlinkHref={`${SPRITE}#bag`} />
               </svg>
-              <span className={classes.count}>{getCount(cart)}</span>
+              <span className={cart.length ? classes.count : classes.hidden}>{ sumBy(cart.map(({quantity}) => quantity))}</span>
             </Link>
           </div>
         </div>

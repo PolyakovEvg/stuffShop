@@ -113,6 +113,10 @@
   position: relative;
 }
 
+.hidden{
+  display: none;
+}
+
 .count {
   position: absolute;
   width: 14px;
