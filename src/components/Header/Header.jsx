@@ -10,7 +10,7 @@ import { useGetProductsQuery } from "../../features/api/apiSlice";
 
 const Header = () => {
   const { cart, favourites } = useSelector(({ user }) => user);
-  
+
   const { currentUser } = useSelector(({ user }) => user);
   const dispatch = useDispatch();
 
@@ -38,14 +38,15 @@ const Header = () => {
         </div>
 
         <div className={classes.info}>
-          <div className={classes.user} onClick={handleClick}>
-            <div
-              className={classes.avatar}
-              style={{ backgroundImage: `url(${values.avatar})` }}
-            />
-            <div className={classes.username}> {values.name}</div>
-          </div>
-
+          <Link to="/profile">
+            <div className={classes.user} onClick={handleClick}>
+              <div
+                className={classes.avatar}
+                style={{ backgroundImage: `url(${values.avatar})` }}
+              />
+              <div className={classes.username}> {values.name}</div>
+            </div>
+          </Link>
           <form className={classes.form__search}>
             <svg className={classes.icon}>
               <use xlinkHref={`${SPRITE}#search`} />
@@ -70,7 +71,7 @@ const Header = () => {
                         className={classes.item}
                         key={id}
                         to={`products/${id}`}
-                        onClick={()=> setSearchValue('')}
+                        onClick={() => setSearchValue("")}
                       >
                         <div
                           className={classes.image}
@@ -88,13 +89,19 @@ const Header = () => {
               <svg className={classes["icon-fav"]}>
                 <use xlinkHref={`${SPRITE}#heart`} />
               </svg>
-              <span className={favourites.length ? classes.count : classes.hidden}>{favourites.length}</span>
+              <span
+                className={favourites.length ? classes.count : classes.hidden}
+              >
+                {favourites.length}
+              </span>
             </Link>
             <Link to="/cart" className={classes.cart}>
               <svg className={classes["icon-fav"]}>
                 <use xlinkHref={`${SPRITE}#bag`} />
               </svg>
-              <span className={cart.length ? classes.count : classes.hidden}>{ sumBy(cart.map(({quantity}) => quantity))}</span>
+              <span className={cart.length ? classes.count : classes.hidden}>
+                {sumBy(cart.map(({ quantity }) => quantity))}
+              </span>
             </Link>
           </div>
         </div>
